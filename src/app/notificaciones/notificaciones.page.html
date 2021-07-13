@@ -1,0 +1,51 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Notificaciones</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-row *ngIf="items.length==0">
+    <ion-col class="empty ion-text-center">
+      <ion-icon name="sad"></ion-icon> <br>
+      <h2>No tienes notificaciones</h2>
+    </ion-col>
+  </ion-row>
+  <ion-list approxItemHeight="92px">
+    <ion-item *ngFor="let item of items;let i=index;" (click)="showItem(item,i)">
+      <ion-avatar slot="start">
+          <ion-img *ngIf="item.image_main" [src]="item.image_main.url" cache="true"></ion-img>
+          <div class="line"></div>
+    <div  class="circle">
+      <ion-icon [name]="(item.type=='eventos')?'calendar':(item.type=='noticias')?'paper':(item.type=='otro')?'information-circle':'help'"></ion-icon>
+      </div>
+        </ion-avatar>
+        <ion-label>
+          <h2>{{item.title}}</h2>
+          <h3>{{item.message}}</h3>
+          <p> {{item.timestamp | date:'EEE, dd MMM yyyy'}} </p>
+      </ion-label>
+      <ion-note item-right  color="red" *ngIf="badge==true && i==0" >
+        NUEVA
+      </ion-note>
+    </ion-item>
+
+    <!-- <ion-item *ngFor="let item of items;let i=index;"  (click)="showItem(item,i)">
+      <ion-avatar item-left>
+        <div class="line"></div>
+        <div class="circle">
+          <ion-icon [name]="(item.type=='eventos')?'calendar':(item.type=='noticias')?'paper':(item.type=='otro')?'information-circle':'help'"></ion-icon>
+        </div>
+      </ion-avatar>
+      <p class="title">{{item.title}} </p>
+      <p>{{item.message}}</p>
+      <p> {{item.timestamp | date:'EEE, dd MMM yyyy - HH:mm'}} Hrs</p>
+      <ion-note item-right  color="red" *ngIf="badge==true && i==0" >
+        NUEVA
+      </ion-note>
+    </ion-item> -->
+  </ion-list>
+</ion-content>
+

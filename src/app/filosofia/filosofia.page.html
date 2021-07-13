@@ -1,0 +1,48 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Filosofia Institucional</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <img src="../../assets/imgs/mapa.png"  tappable>
+  <div class="ion-text-center">
+    <ion-button  color="primary" fill="outline" size="small" class="block-center" (click)="openMap()"> Como llegar
+      <ion-icon slot="icon-only" name="pin"></ion-icon>
+    </ion-button>
+  </div>
+
+    <!-- <button ion-button icon-only small color="primary" (click)="openMap()" class="center-block"> <ion-icon name="pin"></ion-icon> Como llegar</button> -->
+  <ion-list no-lines class="ion-padding">
+      <div class="ion-text-center title">
+        <h2>Universidad Privada Domingo Savio</h2>
+      </div>
+    <ion-item >
+      <p class="ion-text-justify">  
+        La Universidad Privada Domingo Savio forma parte de la Corporación Educativa Domingo Savio, con 30 años de experiencia y
+        presencia en el Sistema Educativo Nacional. <br> Actualmente cuenta con más de 20.000 estudiantes a nivel nacional con
+        ocho sedes <strong>(Santa Cruz, Tarija, Potosí, Cochabamba, La Paz, Trinidad, Sucre, Oruro y próximamente Pando)</strong> convirtiéndose
+        así en la <strong>RED UNIVERSITARIA MAS GRANDE DEL PAIS</strong>.
+      </p>
+    </ion-item>
+    <div class="ion-text-center title">
+      <h2>Visión</h2>
+    </div>
+    <ion-item text-wrap text-justify>
+      <p>Consolidar la Red Nacional de educación superior más grande del país con reconocimiento internacional, y aportar así
+        a la creación de escenarios deseables concurrentes con las aspiraciones de la población Boliviana, para el logro
+        de su desarrollo.
+      </p>
+    </ion-item>
+    <div class="ion-text-center title">
+      <h2>Misión</h2>
+    </div>
+    <ion-item text-wrap text-justify>
+      <p>
+        Ser la red nacional de educación superior más importante de Bolivia con trascendencia internacional; aportando al desarrollo integral del país mediante la formación académica de calidad y la investigación
+      </p>
+    </ion-item>
+  </ion-list>
+</ion-content>

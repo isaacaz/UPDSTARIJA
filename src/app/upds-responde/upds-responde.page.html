@@ -1,0 +1,65 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>UPDS Responde</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+ 
+  <ion-row *ngIf="items.length==0">
+    <ion-col class="empty ion-text-center">
+      <ion-icon name="sad"></ion-icon> <br>
+      <h2>No hay consultas</h2>
+      <span *ngIf="!uuid " >No se pudo obtener el identificador del dispositivo.</span>
+    </ion-col>
+  </ion-row>
+  <ion-grid>
+    <ion-row *ngFor="let item of items">
+      <ion-col size="9">
+        <ion-card color="primary" padding>
+          <h2 *ngIf="item.type=='preguntas'">PREGUNTA</h2>
+          <h2 *ngIf="item.type=='sugerencias'">SUGERENCIA</h2>
+          <h2 *ngIf="item.type=='reclamos'">RECLAMO</h2>
+          <h2 *ngIf="item.type=='felicitaciones'">FELICITACIONES</h2>
+          <p class="pre-wrap">
+            {{item.text}}
+          </p>
+          <small>{{item.timestamp | date:'dd/MM/yyyy - HH:mm'}} Hrs.</small>
+          <!-- <small> {{item.timestamp | date:'EEE, dd MMM yyyy - HH:mm'}} Hrs.</small> -->
+          <ion-icon *ngIf="item.visto!='no'"  name="done-all"></ion-icon>
+        </ion-card>
+        
+      </ion-col>
+      <ion-col *ngIf="item.respuesta" offset="3" size="9">
+       
+        <ion-card  color="light" padding>
+           <small> {{item.respuesta.timestamp | date:'EEE, dd MMM yyyy - HH:mm'}} Hrs.</small>
+        <p class="pre-wrap" ion-text color="grey">
+        {{item.respuesta.text}}
+        </p>
+        <span *ngIf="item.respuesta.url" class="pre-wrap" text-wrap> <br>  Más información en: <a (click)="openWeb(item.respuesta.url)" >{{item.respuesta.url}}</a></span>
+         
+        </ion-card>
+      </ion-col>
+    </ion-row>
+    <!-- <ion-list no-lines>
+      <ion-item > -->
+        
+        <!-- <ion-row >
+          
+        </ion-row> -->
+      <!-- </ion-item> -->
+    <!-- </ion-list> -->
+  </ion-grid>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="addConsulta()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+  <!-- <ion-fab right bottom>
+    <button ion-fab color="primary" (click)="addConsulta()" ><ion-icon name="add"></ion-icon></button>
+  </ion-fab> -->
+</ion-content>
+

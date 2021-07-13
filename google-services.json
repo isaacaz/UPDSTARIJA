@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "629122028516",
+    "firebase_url": "https://upds-tarija.firebaseio.com",
+    "project_id": "upds-tarija",
+    "storage_bucket": "upds-tarija.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:629122028516:android:0d9d420faccd6f74",
+        "android_client_info": {
+          "package_name": "com.mayortecapps.upds"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "629122028516-pogq41qutiuifht6p9po8a13s74ud3iv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC5_J9R6ouqPII_wLNrvuDrgh_6nmdgLfw"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

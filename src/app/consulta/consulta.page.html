@@ -1,0 +1,82 @@
+<ion-header>
+
+  <ion-toolbar color="primary">
+    <ion-title>Nueva Consulta</ion-title>
+
+    <ion-buttons slot="end">
+      <ion-button (click)="close()">
+        <ion-icon slot="icon-only" name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <form novalidate>
+    <ion-list no-lines>
+      <ion-item>
+        <ion-input type="text" required [(ngModel)]="consult.name" name="name" placeholder="Nombre (Obligatorio)" ngControl="name" maxlength="60"></ion-input>
+      </ion-item>
+      <ion-item *ngIf="consult.name" >
+        <small >{{consult.name.length}}/60</small>
+      </ion-item>
+      <ion-item class="seleccion">
+        <ion-label>Categoria</ion-label>
+        <ion-select [(ngModel)]="consult.category" name="category" ngControl="category" cancelText="Cancelar" okText="Ok" interface="alert">
+          <ion-select-option value="estudiante">Estudiante</ion-select-option>
+          <ion-select-option value="docente">Docente</ion-select-option>
+          <ion-select-option value="padre">Padre de Familia</ion-select-option>
+          <ion-select-option value="otro">Otro</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item *ngIf="consult.category=='otro'" >
+        <ion-input type="text" [(ngModel)]="consult.other" placeholder="Especifique Aquí (Obligatorio)" name="other" ngControl="other" required maxlength="40"></ion-input>
+      </ion-item>
+      <ion-item *ngIf="consult.other" >
+        <small >{{consult.other.length}}/40</small>
+      </ion-item>
+      <ion-item>
+        <ion-input type="email" [(ngModel)]="consult.email" placeholder="Email" name="email" ngControl="email" maxlength="50"></ion-input>
+      </ion-item>
+      <ion-item *ngIf="consult.email" >
+        <small >{{consult.email.length}}/50</small>
+      </ion-item>
+      <ion-item>
+        <ion-input type="number" [(ngModel)]="consult.phone" placeholder="Telefono Fijo" name="phone" ngControl="phone" maxlength="15"></ion-input>
+      </ion-item>
+      <ion-item *ngIf="consult.phone" >
+        <small >{{consult.phone.length}}/15</small>
+      </ion-item>
+      <ion-item>
+        <ion-input type="number" [(ngModel)]="consult.cellphone" placeholder="Celular (Obligatorio)" name="cellphone" ngControl="cellphone" required maxlength="15"></ion-input>
+      </ion-item>
+      <ion-item *ngIf="consult.cellphone" >
+        <small >{{consult.cellphone.length}}/15</small>
+      </ion-item>
+      <ion-item class="seleccion">
+        <ion-label>Tipo de consulta</ion-label>
+        <ion-select [(ngModel)]="consult.type" name="type" ngControl="type" cancelText="Cancelar" okText="Ok" interface="alert">
+          <ion-select-option value="preguntas">Pregunta</ion-select-option>
+          <ion-select-option value="sugerencias">Sugerencia</ion-select-option>
+          <ion-select-option value="reclamos">Reclamo</ion-select-option>
+          <ion-select-option value="felicitaciones">Felicitaciones</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-textarea [(ngModel)]="consult.text" name="text" placeholder="Tu Consulta  (Obligatorio)" ngControl="text" required maxlength="1000"></ion-textarea>
+
+      </ion-item>
+      <ion-item *ngIf="consult.text" >
+        <small >{{consult.text.length}}/1000</small>
+      </ion-item>
+      <ion-button expand="block" type="submit" color="primary" [disabled]="!consult.name || !consult.cellphone || !consult.text || (consult.category=='otro' && !consult.other)" (click)="logForm(consult)">Enviar</ion-button>
+      <!-- <ion-item>
+        
+         <button ion-button type="submit" block large color="primary" [disabled]="!consult.name || !consult.cellphone || !consult.text || (consult.category=='otro' && !consult.other)" (click)="logForm(consult)" >Enviar</button>
+      </ion-item> -->
+    </ion-list>
+  </form>
+</ion-content>
+

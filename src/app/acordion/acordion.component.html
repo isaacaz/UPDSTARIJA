@@ -1,0 +1,13 @@
+<ion-card>
+  <div>
+    <ion-item button detail="false" (click)="toggleAccordion()">
+      <ion-label>
+        <p style="color: #fff;font-weight: bold;">{{ title }}</p>
+      </ion-label>
+      <ion-icon slot="end" color="light" [name]="icon"></ion-icon>
+    </ion-item>
+  </div>
+  <ion-card-content #expandWrapper>
+    <ng-content></ng-content>
+  </ion-card-content>
+</ion-card>

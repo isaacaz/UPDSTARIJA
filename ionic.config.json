@@ -1,5 +1,7 @@
 {
   "name": "updsmovil",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

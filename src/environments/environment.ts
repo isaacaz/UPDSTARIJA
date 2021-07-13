@@ -3,7 +3,20 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  apiKey:"AIzaSyBdXZz8FMhrbkv9SVB1KKy0T50Kwx3fE8w",
+  authDomain:"upds-tarija.firebaseapp.com",
+  databaseURL:"https://upds-tarija.firebaseio.com",
+  projectId:"upds-tarija",
+  storageBucket:"upds-tarija.appspot.com",
+  messagingSenderId:"629122028516"
+  // apiKey: "AIzaSyBdXZz8FMhrbkv9SVB1KKy0T50Kwx3fE8w",
+  //   authDomain: "upds-tarija.firebaseapp.com",
+  //   databaseURL: "https://upds-tarija.firebaseio.com",
+  //   projectId: "upds-tarija",
+  //   storageBucket: "upds-tarija.appspot.com",
+  //   messagingSenderId: "629122028516",
+  //   appId: "1:629122028516:web:4281cf075508236eddedf1"
 };
 
 /*

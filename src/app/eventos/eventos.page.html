@@ -1,0 +1,94 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Eventos UPDS</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-row *ngIf="empty">
+    <ion-col class="empty ion-text-center">
+      <ion-icon name="sad"></ion-icon> <br>
+      <h2>No hay futuros eventos</h2>
+    </ion-col>
+  </ion-row>
+  <ion-card *ngFor="let item of eventos | async">
+    <ion-item >
+      <h3>{{item.title}}</h3>
+    </ion-item>
+      <img *ngIf="item.image" style="width:100%;" [src]="item.image" imageViewer/>
+   
+    <ion-list>
+      <ion-item>
+        <ion-icon name="pin"></ion-icon>
+        <ion-label>
+          
+          <h3>{{item.location}}</h3> 
+          <h4>Lugar</h4>
+        </ion-label>
+        
+      </ion-item>
+      <ion-item >
+        <ion-icon name="calendar"></ion-icon>
+        <ion-label>
+          <h3>{{item.date_start | date:'dd/MM/yyyy HH:mm'}} Hrs.</h3>
+           <!-- <h3>{{item.date_start | date:'EEEE, dd MMM yyyy - HH:mm'}} Hrs.</h3> -->
+           <h4>Fecha y Hora</h4>
+          </ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-icon name="contacts" ></ion-icon>
+        <ion-label> 
+         <h3>{{item.organizer}}</h3>
+         <h4>Organizador</h4>
+        </ion-label>
+      </ion-item>
+      <ion-item>
+        <p class="ion-text-justify">
+          {{item.text}}
+        </p>
+      </ion-item>
+      <ion-item *ngIf="item.url" >
+        <ion-label>
+          <h2>Más información en </h2>
+          <a (click)="openWeb(item.url)">{{item.url}}</a> 
+        </ion-label>
+         
+      </ion-item>
+    </ion-list>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-button  color="primary" (click)="like(item.key)">
+          <ion-icon slot="icon-only" name="thumbs-up"></ion-icon>
+        </ion-button>
+        <div>{{item.likes}} Me Gusta </div>
+      </ion-buttons>
+      <!-- <ion-buttons left>
+        <button (click)="like(item.$key)" ion-button color="primary" icon-left clear small>
+        <ion-icon name="thumbs-up"></ion-icon>
+        <div>{{item.likes}} Me Gusta </div>
+      </button>
+      </ion-buttons> -->
+      <ion-buttons slot="end">
+        <ion-button color="primary" (click)="share(item.title,item.text,item.image,item.url)">
+          <ion-icon slot="icon-only" name="share"></ion-icon>
+        </ion-button>
+        <div>Compartir</div>
+      </ion-buttons>
+      <!-- <ion-buttons right>
+        <button item-right ion-button color="primary" (click)="share(item.title,item.text,item.image,item.url)" icon-right clear
+          small>
+          <div>Compartir </div>
+          <ion-icon name="share"></ion-icon>
+          </button>
+      </ion-buttons> -->
+    </ion-toolbar>
+  </ion-card>
+  <ion-infinite-scroll (ionInfinite)="getMore($event)">
+    <ion-infinite-scroll-content loadingSpinner="crescent" loadingText="Cargando más eventos...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+  <div class="lightbox">
+  </div>
+</ion-content>

@@ -1,0 +1,97 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Comunicados</ion-title>
+    <ion-buttons slot="primary">
+      <ion-button (click)="showPageSearch()">
+        <ion-icon slot="icon-only" name="search"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-row *ngIf="prioridades.length==0 && items.length==0">
+    <ion-col class="empty ion-text-center" >
+      <ion-icon name="sad"></ion-icon> <br>
+      <h2>No hay noticias</h2>
+    </ion-col>
+  </ion-row>
+  <ion-list no-lines>
+    <ion-item *ngFor="let item of prioridades" (click)="showNoticia(item.key)" class="principal">
+      <ion-avatar slot="start" class="circle">
+          <ion-img *ngIf="item.image_main" width="100%" [src]="item.image_main.url" cache="true"></ion-img>
+          <div  *ngIf="!item.image_main" class="ion-text-center margen"><ion-text color="light">
+            {{item.title.substring(0, 1).toUpperCase()}}
+          </ion-text></div>
+          
+    <!-- <div  id="circle">
+      
+      </div> -->
+        </ion-avatar>
+        <ion-label>
+          <h2>{{item.title}}</h2>
+          <h3>{{item.text}}</h3>
+          <p>{{item.timestamp | date:'dd/MM/yyyy'}}</p>
+          <!-- <p> {{item.timestamp | date:'EEE, dd MMM yyyy'}} </p> -->
+      </ion-label>
+  </ion-item>
+    <!-- <ion-item *ngFor="let item of prioridades"  class="blue-light"  (click)="showNoticia(item.key)">
+      <ion-avatar item-left>
+        <ion-img *ngIf="item.image_main" width="100%" [src]="item.image_main.url" ></ion-img>
+        <div *ngIf="!item.image_main" class="circle">
+          {{item.title.substring(0, 1).toUpperCase()}}
+        </div>
+      </ion-avatar>
+      <h2>{{item.title}}</h2>
+      <h3>{{item.text}}</h3>
+      <p> {{item.timestamp | date:'EEE, dd MMM yyyy'}}</p>
+      <ion-note item-right>
+        <ion-icon name="star" color="gold"></ion-icon>
+      </ion-note>
+    </ion-item> -->
+  </ion-list>
+  <ion-list>
+    <ion-item *ngFor="let item of items" (click)="showNoticia(item.key)">
+
+        <ion-avatar slot="start" class="circle">
+            <ion-img *ngIf="item.image_main" [src]="item.image_main.url" cache="true"></ion-img>
+            <div  *ngIf="!item.image_main" class="ion-text-center margen"><ion-text color="light">
+              {{item.title.substring(0, 1).toUpperCase()}}
+            </ion-text></div>
+          </ion-avatar>
+          <ion-label>
+            <h2>{{item.title}}</h2>
+            <h3>{{item.text}}</h3>
+            <p>{{item.timestamp | date:'dd/MM/yyyy'}}</p>
+            <!-- <p> {{item.timestamp | date:'EEE, dd MMM yyyy'}} </p> -->
+        </ion-label>
+    </ion-item>
+  </ion-list>
+  <ion-infinite-scroll threshold="100px" (ionInfinite)="getMore($event)">
+      <ion-infinite-scroll-content loadingText="Cargando más noticias...">
+      </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+</ion-content>
+<ion-footer>
+    <ion-toolbar color="light">
+      <ion-list>
+      <ion-item >
+        <ion-label>Categoría</ion-label>
+        <ion-select [(ngModel)]="category" (ionChange)="getByCategory($event)" cancelText="Cancelar" okText="Ok">
+          <ion-select-option value="todas">Todas</ion-select-option>
+          <ion-select-option value="Actividades Academicas">Actividades Academicas</ion-select-option>
+          <ion-select-option value="Actividades UPDS">Actividades UPDS</ion-select-option>
+          <ion-select-option value="Extensión">Extensión</ion-select-option>
+          <ion-select-option value="Postgrado">Postgrado</ion-select-option>
+          <ion-select-option value="Responsabilidad Social">Responsabilidad Social</ion-select-option>
+          <ion-select-option value="Socialero UPDS">Socialero UPDS</ion-select-option>
+          <ion-select-option value="UPDS informa">UPDS informa</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </ion-list>
+    </ion-toolbar>
+  </ion-footer>
