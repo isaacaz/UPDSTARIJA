@@ -31,7 +31,8 @@ export class NoticiasPage implements OnInit {
   constructor(private db: AngularFireDatabase, private loadingCtrl: LoadingController, private Data: DatabaseService,private router: Router ) { }
 
   ngOnInit() {
-    this.presentLoading();
+    //this.presentLoading();
+    this.showLoading();
     this.limite=12;
     //this.get();
     this.getPrioridades();
@@ -40,24 +41,28 @@ export class NoticiasPage implements OnInit {
 
   }
 
-  // async present() {
-  //   this.isLoading = true;
-  //   return await this.loadingCtrl.create({
-  //     // duration: 5000,
-  //   }).then(a => {
-  //     a.present().then(() => {
-  //       console.log('presented');
-  //       if (!this.isLoading) {
-  //         a.dismiss().then(() => console.log('abort presenting'));
-  //       }
-  //     });
-  //   });
-  // }
+  async showLoading(message?: string) {
+    this.isLoading = true;
+    this.loadingCtrl.create({
+      message: message ? message : 'Cargando Noticias...'
+    }).then(loader => {
+      loader.present().then(() => {
+        if (!this.isLoading) {
+          loader.dismiss();
+        }
+      });
+    });
+  }
 
-  // async dismiss() {
-  //   this.isLoading = false;
-  //   return await this.loadingCtrl.dismiss().then(() => console.log('dismissed'));
-  // }
+  async hideLoading() {
+    this.isLoading = false;
+    this.loadingCtrl.getTop().then(loader => {
+      if (loader) {
+        loader.dismiss();
+      }
+    });
+  }
+
 
   // async presentLoading() {
   //   const loading = await this.loadingCtrl.create({
@@ -71,12 +76,12 @@ export class NoticiasPage implements OnInit {
   //   console.log('Loading dismissed!');
   // }
 
-  async  presentLoading() {
-    this.loader = await this.loadingCtrl.create({
-      message: "Cargando Noticias..."
-    });
-    return this.loader.present();
-  }
+  // async  presentLoading() {
+  //   this.loader = await this.loadingCtrl.create({
+  //     message: "Cargando Noticias..."
+  //   });
+  //   return this.loader.present();
+  // }
 
   // get(){
   //   this.empty = false;
@@ -125,7 +130,8 @@ export class NoticiasPage implements OnInit {
       this.noticias=this.Data.getRealTimeDBQuery('upds/noticias',ref=>
       ref.orderByChild('timestamp').limitToLast(this.limite).endAt(new Date().getTime()))
       this.noticias.subscribe((snap: Array < any > ) => {
-        this.loader.onDidDismiss();
+        //this.loader.dismiss();
+        this.hideLoading();
         this.items=snap
 
         if (snap.length > 0) {
@@ -189,10 +195,12 @@ export class NoticiasPage implements OnInit {
     if(this.category!='todas'){
       this.prioridades=[];
       this.items=[];
-      this.presentLoading();
+      //this.presentLoading();
+      this.showLoading();
       this.Data.getRealTimeDBQuery('upds/noticias',ref=>
         ref.orderByChild('category').equalTo(this.category).limitToLast(50)).subscribe((snap: Array<any>)=>{
-          this.loader.onDidDismiss();
+          //this.loader.dismiss();
+          this.hideLoading();
           this.items = snap;
           if (snap.length > 0) {
             this.items.sort((a:any, b:any) => {
