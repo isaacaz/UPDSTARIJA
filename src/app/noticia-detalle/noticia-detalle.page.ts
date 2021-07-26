@@ -7,6 +7,7 @@ import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 import { Storage } from '@ionic/storage';
 import { ActivatedRoute ,Router} from '@angular/router';
 
+
 @Component({
   selector: 'app-noticia-detalle',
   templateUrl: './noticia-detalle.page.html',
@@ -42,14 +43,18 @@ export class NoticiaDetallePage implements OnInit  {
     return this.loader.present();
   }
   getNoticia() {
+    console.log(this.key);
     this.db.getRealTimeDBObject('upds/noticias/' + this.key).subscribe(noticia=>{
       this.noticia=noticia;
+    
     })
+
     this.db.getRealTimeDBList('upds/noticias/' + this.key + '/images').subscribe(imgs=>{
       this.images=imgs;
       imgs.map((img:any)=>{
       })
     })
+    console.log(this.images);
   }
   like(key) {
     console.log(key);
@@ -82,6 +87,7 @@ export class NoticiaDetallePage implements OnInit  {
     })
   }
   share(message, imgUrl) {
+   
     if (imgUrl) {
       this.convertToDataURLviaCanvas(imgUrl, "image/png")
         .then((base64Img: string) => {

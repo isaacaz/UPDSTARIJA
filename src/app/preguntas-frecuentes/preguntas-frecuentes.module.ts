@@ -8,13 +8,19 @@ import { PreguntasFrecuentesPageRoutingModule } from './preguntas-frecuentes-rou
 
 import { PreguntasFrecuentesPage } from './preguntas-frecuentes.page';
 import {AcordionComponent} from '../acordion/acordion.component'
+import { ModalPage } from '../modal/modal.page';
+import { ModalPageModule } from '../modal/modal.module';
 
 @NgModule({
+  entryComponents:[
+    ModalPage
+  ],
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    PreguntasFrecuentesPageRoutingModule
+    PreguntasFrecuentesPageRoutingModule,
+    ModalPageModule
   ],
   declarations: [PreguntasFrecuentesPage,AcordionComponent]
 })

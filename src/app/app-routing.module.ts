@@ -44,6 +44,7 @@ const routes: Routes = [
     path: 'preguntas-frecuentes',
     loadChildren: () => import('./preguntas-frecuentes/preguntas-frecuentes.module').then( m => m.PreguntasFrecuentesPageModule)
   },
+ 
   // {
   //   path: 'consulta',
   //   loadChildren: () => import('./consulta/consulta.module').then( m => m.ConsultaPageModule)

@@ -6,7 +6,8 @@
     <ion-title>Preguntas Frecuentes</ion-title>
 
     <ion-buttons slot="primary">
-      <ion-button href={{url}} class="colores">
+      <!-- <ion-button href={{url}} class="colores"> -->
+        <ion-button (click)="openModal()" class="color">
         <ion-icon slot="icon-only" ios="logo-whatsapp" md="logo-whatsapp"></ion-icon>
       </ion-button>
     </ion-buttons>
@@ -14,33 +15,33 @@
 </ion-header>
 
 <ion-content>
-  <app-acordion title="¿Hasta qué fecha puedo programar mi materia?">
-    <p>
-      El tiempo máximo para programar materia es hasta cuatro días desde que inicia el módulo.
-    </p>
+  <app-acordion  title="1.- ¿Hasta qué fecha puedo programar mi materia?">
+        <p>
+        El tiempo máximo para programar materia es hasta cuatro días desde que inicia el módulo.
+      </p>
   </app-acordion>
-  <app-acordion title="¿Cómo puedo programar mi materia?">
+  <app-acordion title="2.- ¿Cómo puedo programar mi materia?">
     <p>
       Debe visitar el sitio: portal.upds.edu.bo/updsnet  luego deberá ingresar a nuestra plataforma con el usuario de microsoft office365.
     </p>
   </app-acordion>
-  <app-acordion title="Soy estudiante de la UPDS y deseo reincorporarme">
+  <app-acordion title="3.- Soy estudiante de la UPDS y deseo reincorporarme">
     <p>
       El primer paso es consultar con el área de Bienestar Estudiantil, si tuviste algún tipo de beca, posteriormente con tu Jefe de Carrera para que te ayude a hacer la proyección de materias que llevarás durante el semestre.
     </p>
   </app-acordion>
-  <app-acordion title="¿Cómo puedo congelar mi materia?">
+  <app-acordion title="4.- ¿Cómo puedo congelar mi materia?">
     <p>
       Debes comunicarte con Registro para presentar un justificativo que avale tu solicitud, por ejemplo: boleto de viaje, certificado de baja médica, certificado de viaje de trabajo, etc. Posteriorimente debes presentarte con el Decano de tu Facultad.
     </p>
   </app-acordion>
 
-  <app-acordion title="Para realizar Traspaso de Sede">
+  <app-acordion title="5.- Para realizar Traspaso de Sede">
     <p>
       Debes enviar una carta al área de Archivos de la Universidad Privada Domingo Savio sede Tarija solicitando el  traspaso de la sede Tarija a otra sede del país.    </p>
   </app-acordion>
 
-  <app-acordion title="Para realizar convalidación externa (Cuando el estudiante viene de otra universidad)">
+  <app-acordion title="6.- Para realizar convalidación externa (Cuando el estudiante viene de otra universidad)">
     <p>
       • Carta de solicitud dirigida a la Universidad Privada Domingo Savio,<br>
       • Fotocopia simple del carnet de identidad y título de bachiller.<br>
@@ -53,11 +54,11 @@
     </p>
   </app-acordion>
 
-  <app-acordion title="¿Cómo me uno al grupo de Whatsapp de mi materia?">
+  <app-acordion title="7.- ¿Cómo me uno al grupo de Whatsapp de mi materia?">
     <p>El enlace a tu grupo de Whastapp está disponible en el curso de tu materia en la plataforma Moodle (virtual.upds.edu.bo).
     </p>
   </app-acordion>
-  <app-acordion title="¿Cómo puedo ver mis notas en la plataforma?">
+  <app-acordion title="8.- ¿Cómo puedo ver mis notas en la plataforma?">
     <p>Debes ingresar en la pestaña de Calificaciones ubicada en la parte izquierda de la plataforma Moodle
     </p>
   </app-acordion>

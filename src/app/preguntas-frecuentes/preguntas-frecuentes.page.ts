@@ -1,4 +1,6 @@
 import { Component, OnInit,ViewChild } from '@angular/core';
+import { ModalController } from '@ionic/angular';
+import { ModalPage } from '../modal/modal.page';
 
 
 @Component({
@@ -12,11 +14,23 @@ export class PreguntasFrecuentesPage implements OnInit {
   whatsappnumber:string="75111830";
   url:string="https://wa.me/"+this.countrycode+this.whatsappnumber+"?text=Deseo realizar una consulta";
 
-  constructor() {
+  constructor(private modalCtrl:ModalController) {
    
    }
 
   ngOnInit() {
   }
+
+  async openModal(){
+    const modal= await this.modalCtrl.create({
+      component: ModalPage,
+      componentProps:{
+        nombre:'Isaac'
+      }
+    })
+    await modal.present();
+  }
+
+  
 
 }

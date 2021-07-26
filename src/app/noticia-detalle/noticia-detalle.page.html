@@ -1,16 +1,39 @@
 <ion-header>
   <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
     <ion-title>{{noticia.category | uppercase}}</ion-title>
   </ion-toolbar>
 </ion-header>
+
 <ion-content>
-  <ion-text class="ion-text-center">
+  <ion-card>
+    <ion-slides  *ngIf="noticia.images" pager style="height: 250px;background-color: #fff;">
+      <ion-slide  *ngFor="let img of images">
+        <img [src]="img.url" alt="" imageViewer>
+      </ion-slide>  
+    </ion-slides>
+    <ion-card-header>
+      
+      <ion-card-title text-center> {{noticia.title}}</ion-card-title>
+      <ion-card-subtitle *ngIf="noticia.foot">{{noticia.foot}} - {{noticia.timestamp | date:'M/d/yy, h:mm a'}}</ion-card-subtitle>
+       <ion-card-subtitle *ngIf="!noticia.foot">{{noticia.timestamp | date:'M/d/yy, h:mm a'}}</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content class="ion-text-justify">
+      <ion-text >
+        {{noticia.text}}
+      </ion-text>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- <ion-text class="ion-text-center">
     <h6>{{noticia.title}}</h6>
-  </ion-text>
+  </ion-text> -->
   <!-- <h4 text-left padding-left padding-right>
      {{noticia.title}}
   </h4> -->
-  <small class="ion-padding-left ion-padding-right">( {{noticia.timestamp | date:'EEE, dd MMM yyyy - HH:mm'}} Hrs. )</small>
+  <!-- <small class="ion-padding-left ion-padding-right">( {{noticia.timestamp | date:'M/d/yy, h:mm a'}} Hrs. )</small>
   <ion-slides  *ngIf="noticia.images" pager style="height: 250px;background-color: #fff;">
     <ion-slide  *ngFor="let img of images">
       <img [src]="img.url" alt="" imageViewer>
@@ -24,7 +47,7 @@
   <p class="ion-text-justify" padding>
     {{noticia.text}}
   </p>
-  <span *ngIf="noticia.url" text-wrap padding class="pre-wrap">Más información en <a (click)="openWeb(noticia.url)">{{noticia.url}}</a> </span>
+  <span *ngIf="noticia.url" text-wrap padding class="pre-wrap">Más información en <a (click)="openWeb(noticia.url)">{{noticia.url}}</a> </span> -->
 </ion-content>
 <ion-footer>
   <ion-toolbar>
