@@ -9,19 +9,18 @@
 
 <ion-content>
   <ion-list>
-    <ion-item>
+    <ion-item (click)="openUrl('RG')">
       <ion-avatar slot="start" class="circle">
         <div class="ion-text-center margen"><ion-text color="light">
           RG
         </ion-text></div>
-      
       </ion-avatar>
       <ion-label>
         <h2>REGISTRO</h2>
         <p>Programación de materias</p>
       </ion-label>
     </ion-item>
-    <ion-item>
+    <ion-item  (click)="openUrl('CJ')">
       <ion-avatar slot="start" class="circle">
         <div class="ion-text-center margen"><ion-text color="light">
           CJ
@@ -32,7 +31,8 @@
         <p>Pagos y servicios</p>
       </ion-label>
     </ion-item>
-    <ion-item href={{url}} >
+  <!-- <ion-item (click)="chat()"> -->
+   <ion-item (click)="openUrl('ST')">
       <ion-avatar slot="start" class="circle">
         <div class="ion-text-center margen"><ion-text color="light">
           ST
@@ -40,10 +40,10 @@
       </ion-avatar>
       <ion-label >
         <h2>SOPORTE TÉCNICO</h2>
-        <p class="ion-text-wrap">Soporte de aplicaciones de la institucion</p>
+        <p class="ion-text-wrap">Soporte de aplicaciones de la institución</p>
       </ion-label>
     </ion-item>
-    <ion-item>
+    <ion-item (click)="openUrl('PV')">
       <ion-avatar slot="start" class="circle">
         <div class="ion-text-center margen"><ion-text color="light">
           PV
@@ -54,7 +54,7 @@
         <p>Plataforma estudial (Moodle)</p>
       </ion-label>
     </ion-item>
-    <ion-item>
+    <ion-item (click)="openUrl('MI')">
       <ion-avatar slot="start" class="circle">
         <div class="ion-text-center margen"><ion-text color="light">
           MI
