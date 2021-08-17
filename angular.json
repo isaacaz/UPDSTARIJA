@@ -37,9 +37,16 @@
               },
               {
                 "input": "src/global.scss"
+              },
+              {
+                "input": "node_modules/@fortawesome/fontawesome-free/css/all.css"
               }
             ],
-            "scripts": []
+            "scripts": [
+              {
+                "input": "node_modules/@fortawesome/fontawesome-free/js/all.js"
+              }
+            ]
           },
           "configurations": {
             "production": {

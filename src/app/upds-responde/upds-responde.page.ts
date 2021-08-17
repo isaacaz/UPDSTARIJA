@@ -18,6 +18,7 @@ export class UpdsRespondePage implements OnInit {
   loader: any;
   items: Array < any > = [];
   uuid:any=null;
+  isLoading=false;
   constructor(private db: DatabaseService,private loadingCtrl: LoadingController, private modalCtrl: ModalController,private storage:Storage, private browser: InAppBrowser, private device: Device) { }
 
   ngOnInit() {
@@ -31,24 +32,47 @@ export class UpdsRespondePage implements OnInit {
     // let modal = this.modalCtrl.create('ConsultaPage');
     // modal.present();
   }
-  async  presentLoading() {
-    this.loader = await this.loadingCtrl.create({
-      message: "Cargando Noticias..."
+  // async  presentLoading() {
+  //   this.loader = await this.loadingCtrl.create({
+  //     message: "Cargando..."
+  //   });
+  //   return this.loader.present();
+  // }
+
+  async showLoading(message?: string) {
+    this.isLoading = true;
+    this.loadingCtrl.create({
+      message: message ? message : 'Cargando Mensajes...'
+    }).then(loader => {
+      loader.present().then(() => {
+        if (!this.isLoading) {
+          loader.dismiss();
+        }
+      });
     });
-    return this.loader.present();
+  }
+
+  async hideLoading() {
+    this.isLoading = false;
+    this.loadingCtrl.getTop().then(loader => {
+      if (loader) {
+        loader.dismiss();
+      }
+    });
   }
 
   get() {
     this.uuid=this.device.uuid;
     console.log(this.uuid);
     if (this.uuid) {
-      this.presentLoading();
+      this.showLoading();
+      //this.presentLoading();
       this.db.getRealTimeDBQuery('upds/consultas',
       ref=>ref.orderByChild('uuid').equalTo(this.device.uuid).limitToLast(20))
           .subscribe((res) => {
         this.items = res;
-
-        this.loader.dismiss();
+            this.hideLoading();
+        //this.loader.dismiss();
         // setTimeout(() => {
         //   this.content.resize();
         //   this.content.scrollToBottom(500);
