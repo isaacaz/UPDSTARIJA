@@ -10,11 +10,11 @@ ion-content {
 }
 img {
   display: block;
-  width: 75%;
+  width: 70%;
   margin-left: auto;
   margin-right: auto;
   max-width: 140px;
-  height: 100%;
+  height: auto;
 }
 ion-spinner * {
   width: 28px;
@@ -23,10 +23,10 @@ ion-spinner * {
   fill: #fff;
 }
 .swiper-slide {
-  background-color: red;
+  background-color: #fff;
 }
 .swiper-slide img {
-  height: 60px;
+  height: 55px;
   width: 100%;
   max-width: 100%;
   //display: block;
